@@ -26,9 +26,10 @@
       "index.html",
       "style.css",
       "renderer.js",
-      "apple.svg",
-      "node_modules/**/*"
+      "apple.svg"
     ],
+    "asar": true,
+    "compression": "maximum",
     "mac": {
       "target": "dmg",
       "category": "public.app-category.productivity",
