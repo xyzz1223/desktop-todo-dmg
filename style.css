@@ -1,0 +1,153 @@
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+body {
+  font-family: -apple-system, "Segoe UI", "PingFang SC", "Microsoft YaHei", sans-serif;
+  background: rgba(0, 0, 0, 0.01); /* 极小透明度,防止 Windows 点击穿透 */
+  -webkit-user-select: none;
+  margin: 0;
+  padding: 16px;
+}
+
+.card {
+  width: 370px;
+  padding: 16px;
+  background: rgba(28, 28, 30, 0.86);
+  color: #fff;
+  border-radius: 14px;
+  -webkit-backdrop-filter: blur(10px);
+  position: relative;
+  overflow: hidden;
+}
+
+/* 背景图：apple.svg 居中显示，随窗口缩放 */
+.card::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: url('apple.svg') center / contain no-repeat;
+  opacity: 0.12;
+  pointer-events: none;
+  z-index: 0;
+}
+
+/* 确保内容在背景图之上 */
+.title-bar,
+.body {
+  position: relative;
+  z-index: 1;
+}
+
+.title-bar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 10px;
+}
+
+.title {
+  font-size: 16px;
+  font-weight: 600;
+  -webkit-app-region: drag;
+}
+
+.row {
+  display: flex;
+  gap: 6px;
+  margin-bottom: 10px;
+}
+
+.row input,
+.row button {
+  -webkit-app-region: no-drag;
+  background: rgba(255, 255, 255, 0.12);
+  color: #fff;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 6px;
+  padding: 6px;
+  font-size: 13px;
+}
+
+#text { flex: 1; min-width: 0; }
+
+/* datetime-local input: wide enough to show full date */
+#remind { width: 150px; flex-shrink: 0; }
+
+#add {
+  cursor: pointer;
+  width: 32px;
+  text-align: center;
+}
+
+ul {
+  list-style: none;
+  max-height: 320px;
+  overflow-y: auto;
+}
+
+li {
+  padding: 8px 4px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  -webkit-app-region: no-drag;
+  cursor: pointer;
+  font-size: 13px;
+  line-height: 1.5;
+}
+
+li.done span {
+  text-decoration: line-through;
+  opacity: 0.5;
+}
+
+li span {
+  flex: 1;
+  word-break: break-all;
+}
+
+li button {
+  background: none;
+  border: none;
+  color: #ff6b6b;
+  cursor: pointer;
+  font-size: 18px;
+  padding: 0 4px;
+  line-height: 1;
+}
+
+/* 折叠/展开按钮 */
+.win-btns {
+  display: flex;
+  gap: 6px;
+  -webkit-app-region: no-drag;
+}
+
+.win-btns button {
+  width: 24px;
+  height: 24px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 14px;
+  line-height: 1;
+  color: rgba(255,255,255,0.7);
+  background: rgba(255,255,255,0.08);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.win-btns button:hover {
+  background: rgba(255,255,255,0.18);
+  color: #fff;
+}
+
+#btn-close:hover {
+  background: rgba(255, 70, 70, 0.7);
+  color: #fff;
+}
+
+/* 折叠状态 */
+.card.collapsed .body { display: none; }
+.card.collapsed { padding-bottom: 12px; }

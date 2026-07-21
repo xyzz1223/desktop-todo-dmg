@@ -1,0 +1,32 @@
+name: Build macOS DMG
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:   # 允许手动触发
+
+jobs:
+  build-mac:
+    runs-on: macos-latest
+    steps:
+      - name: 检出代码
+        uses: actions/checkout@v4
+
+      - name: 安装 Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+
+      - name: 安装依赖
+        run: npm install
+
+      - name: 构建 macOS DMG
+        env:
+          ELECTRON_MIRROR: https://npmmirror.com/mirrors/electron/
+        run: npm run dist:mac
+
+      - name: 上传 DMG 产物
+        uses: actions/upload-artifact@v4
+        with:
+          name: 桌面待办-macOS
+          path: dist/*.dmg

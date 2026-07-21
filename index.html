@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+  <meta charset="UTF-8">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="card">
+    <div class="title-bar">
+      <span class="title">待办</span>
+      <div class="win-btns">
+        <button id="btn-collapse" title="折叠">─</button>
+        <button id="btn-expand" title="展开">□</button>
+        <button id="btn-close" title="关闭">×</button>
+      </div>
+    </div>
+
+    <div class="body">
+    <div class="row">
+      <input id="text" type="text" placeholder="添加待办...">
+      <input id="remind" type="datetime-local">
+      <button id="add">+</button>
+    </div>
+
+    <ul id="list"></ul>
+    </div>
+
+  </div>
+  <script src="renderer.js"></script>
+</body>
+</html>
