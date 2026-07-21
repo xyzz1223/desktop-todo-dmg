@@ -23,7 +23,7 @@ jobs:
       - name: 构建 macOS DMG
         env:
           ELECTRON_MIRROR: https://npmmirror.com/mirrors/electron/
-        run: npm run dist:mac
+        run: npm run dist:mac -- --publish=never
 
       - name: 上传 DMG 产物
         uses: actions/upload-artifact@v4
